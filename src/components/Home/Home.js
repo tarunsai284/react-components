@@ -52,7 +52,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
     const [showErrorAlert, setShowErrorAlert] = useState(false);
     const fetchPosts = () => {
-        get(Constants.JSON_PLACEHOLDER_POSTS+"dfsf", {}, {})
+        get(Constants.JSON_PLACEHOLDER_POSTS, {}, {})
             .then(data => {
                 if (!data.ok) throw new Error(data.status);
                 return data.json();
