@@ -5,4 +5,7 @@
         background-color: #e9ecef;
         border-radius: .3rem;
     }
+    .tabContainer{
+        margin: 100px;
+    }
 }

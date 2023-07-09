@@ -10,20 +10,21 @@ const postDefaultHeaders = {
 }
 
 const isValidParams = (params) => {
-    if(params==null || (!(params instanceof Object)) || params instanceof Array) return false;
-    params.forEach(element => {
-        if(!(element instanceof String || typeof element === "string" || 
+    if (params == null || (!(params instanceof Object)) || params instanceof Array) return false;
+    Object.keys(params).forEach(key => {
+        const element = params[key];
+        if (!(element instanceof String || typeof element === "string" ||
             element instanceof Number || typeof element === "number")) return false;
     });
     return true;
 }
 
-export const get = async (url, params={}, headers=getDefaultHeaders) => {
-    if(!isValidParams(params)) throw new Error("Invalid parameter object");
-    if(url==null) throw new Error("Invalid url object");
-    if(Object.keys(params).length>0){
+export const get = async (url, params = {}, headers = getDefaultHeaders) => {
+    if (!isValidParams(params)) throw new Error("Invalid parameter object");
+    if (url == null) throw new Error("Invalid url object");
+    if (Object.keys(params).length > 0) {
         url += "?";
-        url += new URLSearchParams({...params})
+        url += new URLSearchParams({ ...params })
     }
 
     const options = {
@@ -33,10 +34,10 @@ export const get = async (url, params={}, headers=getDefaultHeaders) => {
     return fetch(url, options);
 }
 
-export const post = async (url, reqBody={}, headers=postDefaultHeaders) => {
-    if(!(reqBody instanceof Object)) throw new Error("Invalid reqBody object");
-    if(url==null) throw new Error("Invalid url object");
-    
+export const post = async (url, reqBody = {}, headers = postDefaultHeaders) => {
+    if (!(reqBody instanceof Object)) throw new Error("Invalid reqBody object");
+    if (url == null) throw new Error("Invalid url object");
+
     const options = {
         method: 'POST',
         headers: headers,
@@ -45,10 +46,10 @@ export const post = async (url, reqBody={}, headers=postDefaultHeaders) => {
     return fetch(url, options);
 }
 
-export const put = async (url, reqBody={}, headers=postDefaultHeaders) => {
-    if(!(reqBody instanceof Object)) throw new Error("Invalid reqBody object");
-    if(url==null) throw new Error("Invalid url object");
-    
+export const put = async (url, reqBody = {}, headers = postDefaultHeaders) => {
+    if (!(reqBody instanceof Object)) throw new Error("Invalid reqBody object");
+    if (url == null) throw new Error("Invalid url object");
+
     const options = {
         method: 'PUT',
         headers: headers,
@@ -57,9 +58,9 @@ export const put = async (url, reqBody={}, headers=postDefaultHeaders) => {
     return fetch(url, options);
 }
 
-export const deleteHttpRequest = async (url, headers=postDefaultHeaders) => {
-    if(url==null) throw new Error("Invalid url object");
-    
+export const deleteHttpRequest = async (url, headers = postDefaultHeaders) => {
+    if (url == null) throw new Error("Invalid url object");
+
     const options = {
         method: 'DELETE',
         headers: headers,
